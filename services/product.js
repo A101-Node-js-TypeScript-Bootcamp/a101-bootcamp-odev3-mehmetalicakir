@@ -11,7 +11,7 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-var table = "products";
+var table = process.env.table;
 
 exports.addProduct = async (params) => {
     const item = {
@@ -41,4 +41,14 @@ exports.addProduct = async (params) => {
         }
     }
 
+}
+
+exports.readAllProduct = async (params) => {
+    
+}
+exports.readProductId = async (params) => {
+    
+}
+exports.readProductDiscount = async (params) => {
+    
 }
