@@ -1,0 +1,22 @@
+{
+  "name": "a101-bootcamp-odev3-mehmetalicakir",
+  "version": "1.0.0",
+  "description": "a101-bootcamp-odev3-mehmetalicakir created by GitHub Classroom",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A101-Node-js-TypeScript-Bootcamp/a101-bootcamp-odev3-mehmetalicakir.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/A101-Node-js-TypeScript-Bootcamp/a101-bootcamp-odev3-mehmetalicakir/issues"
+  },
+  "homepage": "https://github.com/A101-Node-js-TypeScript-Bootcamp/a101-bootcamp-odev3-mehmetalicakir#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
