@@ -1,6 +1,6 @@
 var AWS = require("aws-sdk");
 const { v4: uuidv4 } = require('uuid');
-require('dotenv').config({ path: '../.env' })
+require('dotenv').config();
 
 AWS.config.update({
   region: process.env.region,
@@ -11,15 +11,17 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-var table = process.env.table;
+var table = "products";
 
-exports.addProduct = async(params) => {
+exports.addProduct = async (params) => {
     const item = {
-        TableName:table,
+        TableName: table,
         Item:{
             productId: uuidv4(),
-            
-            
+            stock: params.stock,
+            productName: params.productName,
+            isDiscount: params.isDiscount,
+            category: params.category
         }
     }
 
@@ -32,6 +34,7 @@ exports.addProduct = async(params) => {
             message: "Product added."
         }
     } catch (error) {
+        console.log("error");
         return {
             status: false,
             message: error
