@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/A101-Node-js-TypeScript-Bootcamp/a101-bootcamp-odev3-mehmetalicakir#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "aws-sdk": "^2.1062.0",
+    "dotenv": "^14.3.0",
+    "express": "^4.17.2",
+    "uuid": "^8.3.2"
   }
 }

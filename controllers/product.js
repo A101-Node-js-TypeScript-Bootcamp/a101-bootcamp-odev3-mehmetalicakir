@@ -1,1 +1,5 @@
-const categoryService = require('../services/product')
+const productService = require('../services/product')
+
+exports.addProduct = async (req,res) => {
+    const response = await productService.addProduct(req.body)
+}
