@@ -14,7 +14,7 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 var table = process.env.table;
 
 exports.addProduct = async (params) => {
-    const item = {
+    const items = {
         TableName: table,
         Item:{
             productId: uuidv4(),
@@ -28,7 +28,7 @@ exports.addProduct = async (params) => {
     console.log("Adding a new product...");
 
     try {
-        await docClient.put(item).promise();
+        await docClient.put(items).promise();
         return{
             status:true,
             message: "Product added."
@@ -43,12 +43,66 @@ exports.addProduct = async (params) => {
 
 }
 
-exports.readAllProduct = async (params) => {
-    
+exports.readAllProducts = async (params) => {
+    const  items = {
+        TableName:table
+    };
+    try {
+        const data = await docClient.scan(items).promise();
+        return {
+            status: true,
+            data: data
+        }
+    } catch (error) {
+        return {
+            status: false,
+            message: error
+        }
+    }
 }
 exports.readProductId = async (params) => {
-    
+    const items = {
+        TableName: table,
+        Key:{
+            productId: params.productId
+        }
+    }
+
+    try {
+        const data = await docClient.get(items).promise();
+        return {
+            status: true,
+            data: data
+        }
+    } catch (error) {
+        console.log("error");
+        return {
+            status: false,
+            message: error
+        }
+    }
 }
 exports.readProductDiscount = async (params) => {
-    
+    const items = {
+        TableName: table,
+    }
+
+    try {
+        const data = await docClient.scan(items).promise();
+        let discount = [];
+        data.Items.forEach(element => {
+            if(element.isDiscount==true){
+            discount.push(element)}
+        });
+        return {
+            status: true,
+            data:discount
+        }
+    } catch (error) {
+        console.log("error");
+        return {
+            status: false,
+            message: error
+        }
+    }
 }

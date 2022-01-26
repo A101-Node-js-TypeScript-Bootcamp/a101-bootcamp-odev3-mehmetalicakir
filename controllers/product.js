@@ -4,8 +4,8 @@ exports.addProduct = async (req,res) => {
     const response = await productService.addProduct(req.body);
     res.send({response})
 }
-exports.readAllProduct = async (req,res) => {
-    const response = await productService.readAllProduct();
+exports.readAllProducts = async (req,res) => {
+    const response = await productService.readAllProducts();
     res.send({response})
 }
 exports.readProductId = async (req,res) => {
