@@ -16,3 +16,7 @@ exports.readProductDiscount = async (req,res) => {
     const response = await productService.readProductDiscount();
     res.send({response})
 }
+exports.deleteProduct = async (req,res) => {
+    const response = await productService.deleteProduct(req.body);
+    res.send({response})
+}

@@ -106,3 +106,32 @@ exports.readProductDiscount = async (params) => {
         }
     }
 }
+
+exports.deleteProduct = async (params) => {
+    const items = {
+        TableName: table,
+        Key:{
+            productId: params.productId
+        }
+    }
+    const discountCheck = await docClient.get(items).promise();
+    if(discountCheck.Item.isDiscount == true){
+        return{
+                status: false,
+                message: "İndirimde olan ürün silinemez"
+            }
+        
+    }
+    try {
+        const data = await docClient.delete(items).promise();
+        return {
+            status: true
+        }
+    } catch (error) {
+        console.log("error");
+        return {
+            status: false,
+            message: error
+        }
+    }
+}
