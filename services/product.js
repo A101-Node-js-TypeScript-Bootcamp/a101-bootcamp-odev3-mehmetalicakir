@@ -43,6 +43,7 @@ exports.addProduct = async (params) => {
 
 }
 
+
 exports.readAllProducts = async (params) => {
     const  items = {
         TableName:table
@@ -134,4 +135,36 @@ exports.deleteProduct = async (params) => {
             message: error
         }
     }
+}
+
+exports.updateProduct = async (params) => {
+    const items = {
+        TableName: table,
+        Key:{
+            productId: params.productId
+        },
+        UpdateExpression: "set stock = :stock",
+        ExpressionAttributeValues:{
+            ":stock":params.stock
+        },
+        ReturnValues:"UPDATED_NEW"
+    };
+
+    console.log("Updating a new product...");
+
+    try {
+        const data = await docClient.update(items).promise();
+        return{
+            status:true,
+            data:data,
+            message: "Product updated."
+        }
+    } catch (error) {
+        console.log("error");
+        return {
+            status: false,
+            message: error
+        }
+    }
+
 }

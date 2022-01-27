@@ -20,3 +20,7 @@ exports.deleteProduct = async (req,res) => {
     const response = await productService.deleteProduct(req.body);
     res.send({response})
 }
+exports.updateProduct = async (req,res) => {
+    const response = await productService.updateProduct(req.body);
+    res.send({response})
+}
